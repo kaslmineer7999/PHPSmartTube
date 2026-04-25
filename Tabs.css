@@ -53,7 +53,7 @@
 	border: 1.7px solid #00698c;
 	border-bottom-style: none;
 	background: #00bfff;
-	border-radius: 1px 1px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
 }
 .x-tabs .x-tab-active:hover,
 .x-tabs .x-tab-active:focus{
