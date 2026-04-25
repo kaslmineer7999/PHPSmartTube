@@ -1,0 +1,63 @@
+/*
+ *
+ * very smart stylehseet for tabs component
+ *
+ */
+
+.x-tabs{
+	padding: 0px;
+	margin: 0px;
+	margin-top: 10px;
+	list-style: none;
+}
+.x-tabs:after{
+	content: ' ';
+	display: block;
+	height: 20px;
+	background: #00bfff;
+	clear: both;
+	margin-bottom: 20px;
+	margin-left: -13px;
+	margin-right: -13px;
+}
+.x-tabs .x-tab{
+	display: inline;
+	float: left;
+	margin: 0px 8px;
+	border: 1.2px solid #00bfffb4;
+	border-image-slice: 30;
+	color: #00beff;
+	border-bottom-style: none;
+	border-radius: 2px 2px 0px 0px;
+}
+.x-tabs .x-tab a:any-link{
+	display: inline;
+	float: left;
+	font: inherit;
+	color: inherit;
+	padding: 11px 20px;
+}
+.x-tabs .x-tab:hover,
+.x-tabs .x-tab:focus{
+	background: #00bfff40;
+}
+.x-filler{
+	width: 80ch;
+	height: 40ch;
+	overflow: auto;
+}
+.x-tabs .x-tab-active{
+	/*margin-bottom: -1.7px;*/
+	border: 1.7px solid #00698c;
+	border-bottom-style: none;
+	background: #00bfff;
+	border-radius: 1px 1px 0px 0px;
+}
+.x-tabs .x-tab-active:hover,
+.x-tabs .x-tab-active:focus{
+	background: #00bfff;
+}
+.x-tabs .x-tab-active a:any-link{
+	text-decoration: none;
+	color: white;
+}

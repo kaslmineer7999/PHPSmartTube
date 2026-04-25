@@ -1,0 +1,103 @@
+.v-button{
+	border: 0;
+	outline: 0;
+	background: 0;
+	margin: 0;
+	padding: 0;
+}
+.video{
+	width: 100%;
+	overflow: hidden;
+	background: #444444;
+	margin-bottom: 1.3em;
+	line-height: 22px;
+}
+.video:hover .controls{
+	transform: translateY(0);
+}
+.c-video{
+	position: relative;
+}
+video{
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+	max-height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+.video-wrapper{
+	height: 0;
+	position: relative;
+	padding-top: 56.25%;
+}
+.controls{
+	background: linear-gradient(#999, #fff);
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	transform: translateY(100%) translateY(-12px);
+	transition: .2s transform linear;
+}
+.controls .pp-btn:before{
+	font-family: FontAwesome;
+	font-size: 12px;
+	padding: 5px;
+}
+.controls .pp-btn.play:before{
+	content: '\f04b';
+}
+.controls .pp-btn.pause:before{
+	content: '\f04c';
+}
+.controls .pp-btn{
+	background: linear-gradient(#ffff, #888f);
+	height: 22px;
+	width: 22px;
+	cursor: pointer;
+}
+.controls .progress-bar{
+	height: 12px;
+	background: black;
+}
+.controls .progress-bar .juice{
+	height: inherit;
+	width: 0%;
+	background: linear-gradient(#1A6392, #298ECF);
+	filter: contrast(1.5) brightness(1.5);
+}
+.controls .progress-bar .juice,  .controls .progress-bar{
+	cursor: pointer;
+}
+.controls .lr-time{
+	position: absolute;
+	right: 10px;
+	line-height: 100%;
+	top: 50%;
+	color: black;
+	font-size: 12px;
+	user-select: none;
+}
+.controls .lr-time .vol{
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	position: absolute;
+	top: -40%;
+	left: -17px;
+}
+.controls .lr-time .vol:before{
+	font-family: FontAwesome;
+	font-size: 18px;
+	padding: 5px;
+}
+.controls .lr-time .vol.unmuted:before{
+	content: '\f028';
+}
+.controls .lr-time .vol.muted:before{
+	content: '\f026';
+}
+.controls .lr-time .vol.muted{
+	left: -19px;
+}
