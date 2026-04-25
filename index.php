@@ -4,7 +4,7 @@
 ?>
 <?= $head ?>
 <?= $main ?>
-<?= videoList('test add text') ?>
+<?= videoList('') ?>
 <?= $footer1 ?>
 sude bar
 <?= $footer2 ?>
