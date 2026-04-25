@@ -13,7 +13,7 @@
 .x-tabs:after{
 	content: ' ';
 	display: block;
-	height: 20px;
+	height: 15px;
 	background: #00bfff;
 	clear: both;
 	margin-bottom: 20px;
@@ -24,11 +24,11 @@
 	display: inline;
 	float: left;
 	margin: 0px 8px;
-	border: 1.2px solid #00bfffb4;
+	border: 1px solid #00bfffb4;
 	border-image-slice: 30;
 	color: #00beff;
 	border-bottom-style: none;
-	border-radius: 2px 2px 0px 0px;
+	border-radius: 6px 6px 0px 0px;
 }
 .x-tabs .x-tab a:any-link{
 	display: inline;
