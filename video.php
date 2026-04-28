@@ -33,7 +33,7 @@
 		</div>
 	</div>
 </div>
-<h1 style="margin-top: 0px"><?= $row['TITLE'] ?></h1>
+<h1 style="margin-top: 0px"><?= $row['title'] ?></h1>
 <div class="cf">
 	<i style="float: left; opacity: 0.6">Views: <span id="views"><?= $row['views'] ?></i>
 	<div style="float: right">testing</div>
