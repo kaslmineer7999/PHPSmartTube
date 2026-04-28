@@ -1,3 +1,5 @@
 *.save
 env.php
 videos.db
+*.lock
+vendor/
