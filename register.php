@@ -61,7 +61,7 @@
 				<button class="h3d-button" onclick="textarea.value = '<?= $key ?>'; textarea.focus(); textarea.select(); document.execCommand('copy');">Copy to clipboard</button>
 <?php
 			} else {
-				echo '<span style="color: red;">Can\'t make user account</span>;
+				echo '<span style="color: red;">Can\'t make user account</span>';
 			}
 		}
 	}
