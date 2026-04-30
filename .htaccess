@@ -1,2 +1,9 @@
 RewriteEngine On
-RewriteRule ^SmartTube/(.*)$ /$1 [R=301,L]
+RewriteRule ^SmartTube/(.*)$ /$1
+
+<Files "videos.db">
+	Deny from all
+</Files>
+<Files "example.db">
+	Deny from all
+</Files>

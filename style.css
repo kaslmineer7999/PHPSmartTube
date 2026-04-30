@@ -37,12 +37,13 @@ html{
 #logo{
 	background: url('/SmartTube/Res/SmartTube_logo.png');
 	background-size: contain;
-	width: 187.5px;
-	height: 62.5px;
+	width: 234.375px;
+	height: 78.125px;
 	float: left;
 	filter: brightness(0.8) contrast(1.2);
 	animation: 1s darklightanim infinite alternate;
 	text-indent: -300vw;
+	margin-bottom: 10px;
 }
 img{
 	max-width: 100%;
@@ -50,7 +51,6 @@ img{
 }
 #filter-div{
 	float: right;
-	padding-top: 19.625px;
 	/*transform: translateY(-12.5%);*/
 	font-size: 1.25em;
 }
@@ -152,6 +152,7 @@ a.gbl:any-link{
 		float: unset;
 		width: 100%;
 		padding-bottom: 9.8125px;
+		padding-top: 19.625px;
 	}
 	#content-div{
 		float: unset;
