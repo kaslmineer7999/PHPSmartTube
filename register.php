@@ -52,13 +52,11 @@
 			$stmt->bindValue(':time', $my_time, SQLITE3_INTEGER);
 			$stmt->bindValue(':name', $_POST['u'], SQLITE3_TEXT);
 
-			$key = hash_hmac('sha512', $_POST['u'] . $_POST['p'] . bin2hex(random_bytes(16)), $TOPSECRET);
-			$stmt->bindValue('key', password_hash($key, PASSWORD_BCRYPT, ["cost" => 12]), SQLITE3_TEXT);
+			$stmt->bindValue('key', password_hash($_POST['p'], PASSWORD_BCRYPT, ["cost" => 12]), SQLITE3_TEXT);
 			$results = $stmt->execute();
 			if($results) {?>
-				Your key: <?= $key ?><br>
-				<textarea style="display:none;" aria-hidden="true" id="textarea"></textarea>
-				<button class="h3d-button" onclick="textarea.value = '<?= $key ?>'; textarea.focus(); textarea.select(); document.execCommand('copy');">Copy to clipboard</button>
+				You've just finished making an account!<br>
+				Now login at <a href="/login.php">the login page</a>
 <?php
 			} else {
 				echo '<span style="color: red;">Can\'t make user account</span>';

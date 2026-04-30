@@ -26,9 +26,10 @@
 		$row = $result->fetchArray(SQLITE3_ASSOC);
 
 		if(password_verify($_POST['p'], $row['key'])) {
-			// very unsafe, still thinking of another way
-			header('Set-Cookie: key=' . $_POST['p'] . '; HttpOnly; Max-Age=86400');
-			header('Set-Cookie: username=' . $_POST['u'] . '; HttpOnly; Max-Age=86400');
+			// stateless session_id
+			// make sure you use HTTPS or the cookies will not function as i use Secure in them
+			header('Set-Cookie: session_id=' . hash_hmac('sha256', $_POST['u'] . $row['key'] . floor(time() / 14400), $TOPSECRET) . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax');
+			header('Set-Cookie: username=' . $_POST['u'] . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax');
 			header('Location: /');
 			die();
 		} else {
