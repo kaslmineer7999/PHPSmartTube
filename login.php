@@ -31,10 +31,12 @@
 			// make sure you use HTTPS or the cookies will not function as i use Secure in them
 			header('Set-Cookie: session_id=' . hash_hmac('sha256', $_POST['u'] . $row['key'] . floor(time() / 14400), $TOPSECRET) . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
 			header('Set-Cookie: username=' . $_POST['u'] . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
-			header('Location: /');
+			header('Location: ' . urldecode($_GET['return']));
 			//die();
 		} else {
-			echo '<font color="red"><b>Incorrect Password</b></font>';
+			header('Refresh: 5, url=' . urldecode($_GET['return']));
+			echo '<font color="red"><b>Incorrect Password</b></font><br>';
+			echo '<a href="' . htmlspecialchars(urldecode($_GET['return'])) . '">Return to original page</a>';
 		}
 	}
 ?>

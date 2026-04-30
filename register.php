@@ -45,7 +45,9 @@
 		$stmt->bindValue(':name', $_POST['u'], SQLITE3_TEXT);
 		$result = $stmt->execute();
 		if($result->fetchArray(SQLITE3_ASSOC)) {
+			header('Refresh: 5, url=' . urldecode($_GET['return']));
 			echo '<span style="color: red;"><marquee>User already exists!!</marquee></span>';
+			echo '<a href="' . htmlspecialchars(urldecode($_GET['return'])) . '">Return to original page</a>';
 		} else {
 			$my_time = time();
 			$stmt = $db->prepare('INSERT INTO users (timestamp, username, key) VALUES (:time, :name, :key)');
@@ -56,10 +58,12 @@
 			$results = $stmt->execute();
 			if($results) {?>
 				You've just finished making an account!<br>
-				Now login at <a href="/login.php">the login page</a>
+				Now login at <a href="/login.php?<?php htmlspecialchars(urldecode($_GET['return'])) ?>">the login page</a>
 <?php
 			} else {
+				header('Refresh: 5, url=' . urldecode($_GET['return']));
 				echo '<span style="color: red;">Can\'t make user account</span>';
+				echo '<a href="' . htmlspecialchars(urldecode($_GET['return'])) . '">Return to original page</a>';
 			}
 		}
 	}
