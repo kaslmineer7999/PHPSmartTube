@@ -3,6 +3,21 @@
 	require 'env.php';
 ?>
 <?= $head ?>
+<style>
+	label {
+		display: block;
+		line-height: 32px;
+		float: left;
+	}
+	form input {
+		float: right;
+		display: block;
+		line-height: 32px;
+	}
+	form div {
+		margin-bottom: 1em;
+	}
+</style>
 <?= $main ?>
 <?php if($_SERVER['REQUEST_METHOD'] !== 'POST') { ?>
 <form style="margin: 36px 64px; width: 23em; height: 35em; border: 1px solid grey; padding: 1em; position: relative;" method="POST">
