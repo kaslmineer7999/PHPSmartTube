@@ -1,8 +1,17 @@
 <?php
 	return call_user_func(function() {
+		include 'env.php';
+		$db = new SQLite3('videos.db');
+		$stmt = $db->prepare('SELECT * FROM users WHERE username = :name');
+		$stmt->bindValue(':name', $_COOKIE['username'], SQLITE3_TEXT);
+		$result = $stmt->execute();
+		$row = $result->fetchArray(SQLITE3_ASSOC);
+
 		$gobackurl = urldecode($_SERVER['REQUEST_URI']);
 		$username = htmlspecialchars($_COOKIE['username']);
-		if(!(empty($_COOKIE['username']) && empty($_COOKIE['session_id']))) {
+		if(!(empty($_COOKIE['username']) && empty($_COOKIE['session_id'])) &&
+			hash_equals(hash_hmac('sha256', $_COOKIE['username'] . $row['key'] . floor(time() / 14400), $TOPSECRET),
+				$_COOKIE['session_id'])) {
 			$replacement = <<<EOV
 				<div class="cf" style="margin-bottom: 1em; font-size: 1.25em; text-align: center;">{$username}</div>
 				<div class="cf" s>
