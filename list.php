@@ -13,6 +13,7 @@
 				</div>
 				<div class="h-desc"><?= htmlentities($row['title']) ?></div>
 				<div class="filename"><?= htmlentities(mb_strimwidth($row['desc'], 0, 25, "...")); ?></div>
+				<div class="info">By <span class="username"><?= htmlentities($row['username']) ?></span></div>
 				<?= $r ?>
 			</div>
 <?php
