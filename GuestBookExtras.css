@@ -1,0 +1,61 @@
+/*
+ *
+ * This very smart stylehseet is for the GuestBook
+ *
+ */
+
+.gbentry {
+	margin-bottom: 24px;
+	padding: 13px;
+	border: 1px solid;
+}
+
+.gbinfo {
+	float: left;
+	width: 20%;
+}
+
+.gbcontent {
+	float: right;
+	width: 80%;
+	padding-left: 2%;
+}
+
+.gbpdesc {
+	font: italic 16px/1.0 serif;
+	padding: 4px 32px;
+}
+
+.gbentries {
+	padding: 6px 24px;
+	padding-top: 12px;
+	position: relative;
+}
+.gbentries:before {
+	content: 'GuestBook Entries';
+	position: absolute;
+	top: 0px;
+	left: 6px;
+	background: #8d8;
+	color: #7722c7;
+	padding: 6px;
+}
+
+.gbavatar {
+	margin-bottom: 12px;
+}
+
+.gbavatar > * {
+	float: none !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.gbentry ~ .gbentry .gbavatar > * {
+	margin-top: 0px !important;
+}
+
+.gbvotes {
+	padding-top: 18px;
+	text-align: center;
+}
