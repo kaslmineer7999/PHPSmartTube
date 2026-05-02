@@ -1,6 +1,7 @@
 <?php
-	require 'templator.php';
-	require 'env.php';
+	require_once 'helpers/templator.php';
+	require 'helpers/env.php';
+	require_once 'helpers/session_id.php';
 ?>
 <?= $head ?>
 <style>
@@ -44,7 +45,7 @@
 		if(password_verify($_POST['p'], $row['key'])) {
 			// stateless session_id
 			// make sure you use HTTPS or the cookies will not function as i use Secure in them
-			header('Set-Cookie: session_id=' . hash_hmac('sha256', $_POST['u'] . $row['key'] . floor(time() / 14400), $TOPSECRET) . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
+			header('Set-Cookie: session_id=' . create_session_id($_POST['u'], $row['key'], $TOPSECRET) . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
 			header('Set-Cookie: username=' . $_POST['u'] . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
 			header('Location: ' . urldecode($_GET['return']));
 			//die();

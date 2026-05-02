@@ -1,6 +1,6 @@
 <?php
-	require 'templator.php';
-	require 'env.php';
+	require 'helpers/templator.php';
+	require 'helpers/env.php';
 ?>
 <?= $head ?>
 <style>

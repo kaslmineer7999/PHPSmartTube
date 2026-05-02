@@ -1,6 +1,7 @@
 <?php
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
-		require 'env.php';
+		require 'helpers/env.php';
+		require_once 'helpers/session_id.php';
 		$db = new SQLite3('videos.db');
 
 		$stmt = $db->prepare('SELECT * FROM users WHERE username = :name');
@@ -11,8 +12,7 @@
 		// Assume expired session_id, faker, or unregister until otherwise proven
 		$username = 'Guest';
 
-		if(hash_equals(hash_hmac('sha256', $_COOKIE['username'] . $row['key'] . floor(time() / 14400), $TOPSECRET),
-			$_COOKIE['session_id'])) {
+		if(hash_equals(create_session_id($_COOKIE['username'], $row['key'], $TOPSECRET), $_COOKIE['session_id'])) {
 			$username = $_COOKIE['username'];
 		}
 
@@ -52,7 +52,7 @@
 	@$bbparse = new JBBCode\Parser();
 	$bbparse->addCodeDefinitionSet(new JBBCode\DefaultCodeDefinitionSet());
 
-	require 'templator.php';
+	require 'helpers/templator.php';
 ?>
 <?= $head ?>
 <link href="/GuestBookExtras.css" rel="stylesheet"/>

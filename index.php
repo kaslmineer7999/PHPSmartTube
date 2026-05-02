@@ -1,6 +1,6 @@
 <?php
-	require 'templator.php';
-	include 'list.php';
+	require 'helpers/templator.php';
+	include 'helpers/list.php';
 ?>
 <?= $head ?>
 <?= $main ?>

@@ -1,5 +1,5 @@
 <?php
-	require 'templator.php';
+	require 'helpers/templator.php';
 
 	$db = new SQLite3('videos.db');
 	$stmt = $db->prepare("SELECT * FROM videos WHERE id = :id");
