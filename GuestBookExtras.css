@@ -59,3 +59,14 @@
 	padding-top: 18px;
 	text-align: center;
 }
+
+.gbcontent img[src*='smileys/'] {
+	vertical-align: middle;
+	/* 1. set image to a pixelated look */
+	-ms-interpolation-mode: nearest-neighbor; /* 1 */
+	image-rendering: -webkit-optimize-contrast; /* 1 */
+	image-rendering: -moz-crisp-edges; /* 1 */
+	image-rendering: -o-crisp-edges; /* 1 */
+	image-rendering: pixelated; /* 1 */
+	image-rendering: crisp-edges; /* 1 */
+}
