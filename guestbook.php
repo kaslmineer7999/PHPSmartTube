@@ -80,7 +80,7 @@
 		// 	bodytext TEXT NOT NULL,
 		//	username TEXT NOT NULL
 		// );
-		$results = $db->query('SELECT * FROM guestbook');
+		$results = $db->query('SELECT * FROM guestbook ORDER BY timestamp DESC');
 
 		while($row = $results->fetchArray(SQLITE3_ASSOC)) {?>
 			<div class="gbentry cf" id="gbid<?= $row['id'] ?>">
@@ -90,7 +90,9 @@
 					<div class="gbdate"><span><?= $row['timestamp'] ?></span></div>
 					<div class="cf gbvotes">
 						<div style="float: left; width: 33.33%"><button>^</button></div>
-						<div style="float: left; width: 33.33%; line-height: 21.5px;"><?= $row['upvote'] - $row['downvote'] ?></div>
+						<div style="float: left; width: 33.33%; line-height: 21.5px;"
+							data-upvotes="<?= $row['upvote'] ?>"
+							data-downvotes="<?= $row['downvote'] ?>"><?= $row['upvote'] - $row['downvote'] ?></div>
 						<div style="float: left; width: 33.33%; transform: rotate(180deg)"><button>^</button></div>
 					</div>
 				</div>

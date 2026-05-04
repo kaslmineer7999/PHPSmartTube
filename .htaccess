@@ -7,3 +7,6 @@ RewriteRule ^SmartTube/(.*)$ /$1
 <Files "example.db">
 	Deny from all
 </Files>
+<Files ".ht*">
+	Deny from all
+</Files>
