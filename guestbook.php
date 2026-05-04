@@ -47,10 +47,9 @@
 		header('Set-cookie: guestbookfailure=; HttpOnly; Max-Age=0');
 	}
 
-	@require 'vendor/autoload.php';
+	require 'vendor/autoload.php';
 
-	@$bbparse = new JBBCode\Parser();
-	$bbparse->addCodeDefinitionSet(new JBBCode\DefaultCodeDefinitionSet());
+	$bbparse = new \Nbbc\BBCode();
 
 	require 'helpers/templator.php';
 ?>
@@ -95,7 +94,7 @@
 						<div style="float: left; width: 33.33%; transform: rotate(180deg)"><button>^</button></div>
 					</div>
 				</div>
-				<div class="gbcontent"><?= $bbparse->parse(htmlspecialchars($row['bodytext'], ENT_NOQUOTES))->getAsHtml() ?></div>
+				<div class="gbcontent"><?= $bbparse->Parse($row['bodytext']) //lib escapes html on its own ?></div>
 			</div>
 			<?php
 		}
