@@ -42,7 +42,7 @@
 
 	$failmessage = '';
 
-	if(@$_COOKIE['guestbookfailure'] === 'true') {
+	if(($_COOKIE['guestbookfailure'] ?? '') === 'true') {
 		$failmessage = '<font color="red"><b>Some error happened. Couldn\'t post entry</b></font><br>';
 		header('Set-cookie: guestbookfailure=; HttpOnly; Max-Age=0');
 	}
