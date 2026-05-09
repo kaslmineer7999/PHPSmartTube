@@ -1,6 +1,5 @@
 <?php
-	function videoList($r){
-		$db = new SQLite3('videos.db');
+	function videoList($r, $db){
 		$results = $db->query("SELECT * FROM videos");
 
 		ob_start();

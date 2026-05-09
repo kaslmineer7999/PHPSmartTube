@@ -1,28 +1,12 @@
 <?php
-	return call_user_func(function() {
-		require_once 'env.php';
-		require_once 'session_id.php';
-
-		$db = new SQLite3('videos.db');
+	return function($db) {
 		$stmt = $db->prepare('SELECT * FROM users WHERE username = :name');
-		$stmt->bindValue(':name', $_COOKIE['username'], SQLITE3_TEXT);
+		$stmt->bindValue(':name', $_COOKIE['username'] ?? '', SQLITE3_TEXT);
 		$result = $stmt->execute();
 		$row = $result->fetchArray(SQLITE3_ASSOC);
 
-		//echo '<pre>';
-		//echo $_COOKIE['username'];
-		//echo '<br>';
-		//echo $row['key'];
-		//echo '<br>';
-		//echo $TOPSECRET;
-		//echo '<br>';
-		//echo $_COOKIE['session_id'];
-		//echo '<br>';
-		//echo create_session_id($_COOKIE['username'], $row['key'], $TOPSECRET);
-		//echo '</pre>';
-
 		$gobackurl = urldecode($_SERVER['REQUEST_URI']);
-		$username = htmlspecialchars($_COOKIE['username']);
+		$username = htmlspecialchars($_COOKIE['username'] ?? '');
 		if(!(empty($_COOKIE['username']) && empty($_COOKIE['session_id'])) && hash_equals(create_session_id($_COOKIE['username'], $row['key'], $TOPSECRET),
 				$_COOKIE['session_id'])) {
 			$replacement = <<<EOV
@@ -42,6 +26,6 @@
 				</div>
 			EOV;
 		}
-		return str_replace('<!-- ! ACCOUNT ! -->', $replacement, file_get_contents('main.html'));
+		return str_replace('<!-- ! ACCOUNT ! -->', $replacement, file_get_contents(__DIR__ . '/../html/main.html'));
 	});
 ?>

@@ -1,9 +1,7 @@
 <?php
-	require_once 'helpers/templator.php';
-	require 'helpers/env.php';
-	require_once 'helpers/session_id.php';
+	$app = require __DIR__ . '/init.php';
 ?>
-<?= $head ?>
+<?= $app['layout']['head'] ?>
 <style>
 	label {
 		display: block;
@@ -19,7 +17,7 @@
 		margin-bottom: 1em;
 	}
 </style>
-<?= $main ?>
+<?= $app['layout']['main'] ?>
 <?php if($_SERVER['REQUEST_METHOD'] !== 'POST') { ?>
 <form style="margin: 36px 64px; width: 23em; height: 35em; border: 1px solid grey; padding: 1em; position: relative;" method="POST">
 	<div class="cf">
@@ -36,8 +34,7 @@
 </form>
 <?php
 	} else {
-		$db = new SQLite3('videos.db');
-		$stmt = $db->prepare('SELECT * FROM users WHERE username = :name');
+		$stmt = $app['db']->prepare('SELECT * FROM users WHERE username = :name');
 		$stmt->bindValue(':name', $_POST['u'], SQLITE3_TEXT);
 		$result = $stmt->execute();
 		$row = $result->fetchArray(SQLITE3_ASSOC);
@@ -56,6 +53,6 @@
 		}
 	}
 ?>
-<?= $footer1 ?>
-<?= $footer2 ?>
-<?= $footer3 ?>
+<?= $app['layout']['footers'][0] ?>
+<?= $app['layout']['footers'][1] ?>
+<?= $app['layout']['footers'][2] ?>

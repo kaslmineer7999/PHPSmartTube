@@ -1,10 +1,7 @@
 <?php
+	$app = require __DIR__ . '/init.php';
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
-		require 'helpers/env.php';
-		require_once 'helpers/session_id.php';
-		$db = new SQLite3('videos.db');
-
-		$stmt = $db->prepare('SELECT * FROM users WHERE username = :name');
+		$stmt = $app['db']->prepare('SELECT * FROM users WHERE username = :name');
 		$stmt->bindValue(':name', $_COOKIE['username'], SQLITE3_TEXT);
 		$result = $stmt->execute();
 		$row = $result->fetchArray(SQLITE3_ASSOC);
@@ -12,13 +9,13 @@
 		// Assume expired session_id, faker, or unregister until otherwise proven
 		$username = 'Guest';
 
-		if(hash_equals(create_session_id($_COOKIE['username'], $row['key'], $TOPSECRET), $_COOKIE['session_id'])) {
+		if(hash_equals(create_session_id($_COOKIE['username'], $row['key'], $app['env']['TOPSECRET']), $_COOKIE['session_id'])) {
 			$username = $_COOKIE['username'];
 		}
 
 		//--- end user verification
 
-		$stmt = $db->prepare(<<<SQL
+		$stmt = $app['db']->prepare(<<<SQL
 			INSERT INTO guestbook (timestamp, upvote, downvote, bodytext, username)
 			VALUES (:time, 0, 0, :textdata, :username)
 		SQL);
@@ -47,15 +44,13 @@
 		header('Set-cookie: guestbookfailure=; HttpOnly; Max-Age=0');
 	}
 
-	require 'vendor/autoload.php';
-
 	$bbparse = new \Nbbc\BBCode();
+	$bbparse->AddRule();
 
-	require 'helpers/templator.php';
 ?>
-<?= $head ?>
-<link href="/GuestBookExtras.css" rel="stylesheet"/>
-<?= $main ?>
+<?= $app['layout']['head'] ?>
+<link href="/css/GuestBookExtras.css" rel="stylesheet"/>
+<?= $app['layout']['main'] ?>
 <?= $failmessage ?>
 <h1 style="margin-top: 0px"><big>G</big>uest<big>B</big>ook</h1>
 <p class="gbpdesc">This is the GuestBook, do whatever you want. I don't care</p>
@@ -71,7 +66,6 @@
 </form>
 <div class="gbentries">
 	<?php
-		$db = new SQLite3('videos.db');
 		// Schema: CREATE TABLE guestbook (
 		// 	id INTEGER PRIMARY KEY,
 		// 	timestamp INTEGER NOT NULL,
@@ -80,7 +74,7 @@
 		// 	bodytext TEXT NOT NULL,
 		//	username TEXT NOT NULL
 		// );
-		$results = $db->query('SELECT * FROM guestbook ORDER BY timestamp DESC');
+		$results = $app['db']->query('SELECT * FROM guestbook ORDER BY timestamp DESC');
 
 		while($row = $results->fetchArray(SQLITE3_ASSOC)) {?>
 			<div class="gbentry cf" id="gbid<?= $row['id'] ?>">
@@ -102,7 +96,7 @@
 		}
 	?>
 </div>
-<?= $footer1 ?>
-<?= $footer2 ?>
-<script src="/GuestBook.nomain.js"></script>
-<?= $footer3 ?>
+<?= $app['layout']['footers'][0] ?>
+<?= $app['layout']['footers'][1] ?>
+<script src="/js/GuestBook.nomain.js"></script>
+<?= $app['layout']['footers'][2] ?>

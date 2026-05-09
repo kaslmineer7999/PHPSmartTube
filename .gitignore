@@ -2,4 +2,13 @@
 env.php
 videos.db
 *.lock
+!composer.lock
 vendor/
+dist/
+!dist/.gitkeep
+*.db-journal
+*.db-shm
+*.db-wal
+*.tmp
+*.temp
+*.lck

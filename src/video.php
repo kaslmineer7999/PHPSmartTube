@@ -1,18 +1,16 @@
 <?php
-	require 'helpers/templator.php';
-
-	$db = new SQLite3('videos.db');
-	$stmt = $db->prepare("SELECT * FROM videos WHERE id = :id");
+	$app = require __DIR__ . '/init.php';
+	$stmt = $app['db']->prepare("SELECT * FROM videos WHERE id = :id");
 
 	$stmt->bindValue(':id', $_GET['id'], SQLITE3_TEXT);
 
 	$result = $stmt->execute();
 	$row = $result->fetchArray(SQLITE3_ASSOC);
 ?>
-<?= $head ?>
+<?= $app['layout']['head'] ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="/SmartTube/VideoPlayerExtras.css"/>
-<?= $main ?>
+<link rel="stylesheet" href="/css/VideoPlayerExtras.css"/>
+<?= $ap['layout']['main'] ?>
 <?php if($row) { ?>
 <div class="video">
 	<div class="c-video">
@@ -50,13 +48,13 @@
 <?php
 	};
 ?>
-<?= $footer1 ?>
-<?= $footer2 ?>
-<script src="/SmartTube/VideoPlayer.nomain.js"></script>
-<?= $footer3 ?>
+<?= $app['layout']['footers'][0] ?>
+<?= $app['layout']['footers'][1] ?>
+<script src="/js/VideoPlayer.nomain.js"></script>
+<?= $app['layout']['footers'][2] ?>
 <?php
 	if(!$row) die('');
-	$stmt = $db->prepare('UPDATE videos SET views = views + 1 WHERE id = :id');
+	$stmt = $app['db']->prepare('UPDATE videos SET views = views + 1 WHERE id = :id');
 
 	$stmt->bindValue(':id', $_GET['id'], SQLITE3_INTEGER);
 	$stmt->execute();
