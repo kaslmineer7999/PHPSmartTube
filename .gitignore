@@ -4,7 +4,7 @@ videos.db
 *.lock
 !composer.lock
 vendor/
-dist/
+dist/*
 !dist/.gitkeep
 *.db-journal
 *.db-shm
