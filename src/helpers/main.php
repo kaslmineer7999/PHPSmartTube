@@ -24,7 +24,6 @@
 					<div style="float: left; width: 50%; text-align: left;"><a href="/login.php?return={$gobackurl}" style="color:#00bfff;">Login</a></div>
 					<div style="float: left; width: 50%; text-align: right;"><a href="/register.php?return={$gobackurl}" style="color:#00bfff;">Register</a></div>
 				</div>
-				<pre>$test</pre>
 			EOV;
 		}
 		return str_replace('<!-- ! ACCOUNT ! -->', $replacement, file_get_contents(__DIR__ . '/../html/main.html'));

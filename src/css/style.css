@@ -35,7 +35,7 @@ html{
 	}
 }
 #logo{
-	background: url('/SmartTube/Res/SmartTube_logo.png');
+	background: url('/Res/SmartTube_logo.png');
 	background-size: contain;
 	width: 234.375px;
 	height: 78.125px;
