@@ -66,6 +66,6 @@
 		}
 	}
 ?>
-<?= $footer1 ?>
-<?= $footer2 ?>
-<?= $footer3 ?>
+<?= $app['layout']['footers'][0] ?>
+<?= $app['layout']['footers'][1] ?>
+<?= $app['layout']['footers'][2] ?>
