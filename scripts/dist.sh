@@ -32,14 +32,14 @@ composer install -d "$ROOT"
 
 # Interactive edit
 INTERACTIVE=true
-cat <<EOF
+pv -qL 165 >&2 <<EOF
 +---------------------------------------------+
 |                                             |
 |          INTERACTIVE SESSION AHEAD.         |
 |  Make sure you're actually at the terminal  |
 |                                             |
 +---------------------------------------------+
-EOF | pv -qL 265 >&2
+EOF
 
 # Try to find a text editor
 TEXTEDITOR="$(command -v "$EDITOR" || command -v editor || echo vi)"
