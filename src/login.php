@@ -42,7 +42,7 @@
 		if(password_verify($_POST['p'], $row['key'])) {
 			// stateless session_id
 			// make sure you use HTTPS or the cookies will not function as i use Secure in them
-			header('Set-Cookie: session_id=' . create_session_id($_POST['u'], $row['key'], $app['TOPSECRET']) . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
+			header('Set-Cookie: session_id=' . create_session_id($_POST['u'], $row['key'], $app['env']['TOPSECRET']) . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
 			header('Set-Cookie: username=' . $_POST['u'] . '; HttpOnly; Max-Age=86400; Secure; SameSite=Lax', false);
 			header('Location: ' . urldecode($_GET['return']));
 			//die();
