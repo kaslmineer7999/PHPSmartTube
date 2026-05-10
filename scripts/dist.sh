@@ -31,6 +31,7 @@ echo "Install composer packages"
 composer install -d "$ROOT"
 
 # Interactive edit
+cp "$ROOT/env.example.php" "$ROOT/env.php"
 INTERACTIVE=true
 pv -qL 165 >&2 <<EOF
 +---------------------------------------------+
