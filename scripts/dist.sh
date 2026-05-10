@@ -64,7 +64,7 @@ pv -qL 165 >&2 <<EOF
 EOF
 
 # Try to find a text editor
-TEXTEDITOR="$(command -v "$EDITOR" || command -v editor || echo vi)"
+TEXTEDITOR="${EDITOR:-$(command -v editor || echo vi)}"
 
 # If the user isn't at the computer, or the stdin is not the user
 if [[ ! -t 1 ]] || [[ ! -t 0 ]]
@@ -76,6 +76,6 @@ fi
 # If it's interactive, then edit
 if $INTERACTIVE
 then
-	sleep 5
+	sleep 2
 	env $TEXTEDITOR "$ROOT/env.php"
 fi
