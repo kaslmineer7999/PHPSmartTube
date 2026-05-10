@@ -1,5 +1,5 @@
 <?php
-	return function($db) {
+	return function($db, $TOPSECRET) {
 		$stmt = $db->prepare('SELECT * FROM users WHERE username = :name');
 		$stmt->bindValue(':name', $_COOKIE['username'] ?? '', SQLITE3_TEXT);
 		$result = $stmt->execute();
