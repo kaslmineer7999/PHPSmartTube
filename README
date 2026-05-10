@@ -11,3 +11,9 @@
         Hopefully, I won't mess this up!
 
         You can always contribue to this.
+
+        Usage:
+		This can be "deployed" using this automated script:
+		./scripts/dist.sh
+
+		That's it, just run the above command and it will do everything
