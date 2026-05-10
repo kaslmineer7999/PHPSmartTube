@@ -27,5 +27,5 @@
 			EOV;
 		}
 		return str_replace('<!-- ! ACCOUNT ! -->', $replacement, file_get_contents(__DIR__ . '/../html/main.html'));
-	});
+	};
 ?>
