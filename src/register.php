@@ -56,7 +56,7 @@
 			$results = $stmt->execute();
 			if($results) {?>
 				You've just finished making an account!<br>
-				Now login at <a href="/login.php?<?php htmlspecialchars(urldecode($_GET['return'])) ?>">the login page</a>
+				Now login at <a href="/login.php?return=<?= htmlspecialchars(urldecode($_GET['return'])) ?>">the login page</a>
 <?php
 			} else {
 				header('Refresh: 5, url=' . urldecode($_GET['return']));
