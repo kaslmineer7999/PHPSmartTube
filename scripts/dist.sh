@@ -15,16 +15,27 @@ ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/.."
 echo "Copying files."
 rsync -avP --info=progress2 "$ROOT/src/" "$ROOT/dist/"
 
+# Overwrite protection for database
+DATABASE=true
+if [[ -s "$ROOT/videos.db" ]] || (sqlite3 "$ROOT/videos.db" "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';" | grep -q .)
+then
+	echo "Bypass database copying"
+	DATABASE=false
+fi
+
 # Database copying
-echo "Copying the database"
-cp "$ROOT/example.db" "$ROOT/videos.db"
-echo "Finding tables"
-sqlite3 "$ROOT/example.db" "SELECT name FROM sqlite_schema WHERE type='table'" | while read -r TABLE; do
-	sqlite3 "$ROOT/videos.db" "DELETE FROM '$TABLE';"
-done; unset TABLE
-echo "Clear and shrink database"
-sqlite3 "$ROOT/videos.db" "DELETE FROM sqlite_sequence;" || true
-sqlite3 "$ROOT/videos.db" "VACUUM;"
+if $DATABASE
+then
+	echo "Copying the database"
+	cp "$ROOT/example.db" "$ROOT/videos.db"
+	echo "Finding tables"
+	sqlite3 "$ROOT/example.db" "SELECT name FROM sqlite_schema WHERE type='table'" | while read -r TABLE; do
+		sqlite3 "$ROOT/videos.db" "DELETE FROM '$TABLE';"
+	done; unset TABLE
+	echo "Clear and shrink database"
+	sqlite3 "$ROOT/videos.db" "DELETE FROM sqlite_sequence;" || true
+	sqlite3 "$ROOT/videos.db" "VACUUM;"
+fi
 
 # Install from the composer.json
 echo "Install composer packages"
@@ -32,7 +43,7 @@ composer install -d "$ROOT"
 
 # Overwrite protection
 COPY=true
-if [[ ! -z "`cat "$ROOT/env.php"`" ]]
+if [[ -s "$ROOT/env.php" ]]
 then
 	COPY=false
 fi
