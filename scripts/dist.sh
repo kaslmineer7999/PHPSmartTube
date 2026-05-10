@@ -47,7 +47,7 @@ TEXTEDITOR="$(command -v "$EDITOR" || command -v editor || echo vi)"
 # If the user isn't at the computer, or the stdin is not the user
 if [[ ! -t 1 ]] || [[ ! -t 0 ]]
 then
-	echo "-> This is not a terminal. Please later run \`nano \"$ROOT/env.php\"\`" >&2
+	echo "-> This is not a terminal. Please later run \`$TEXTEDITOR \"$ROOT/env.php\"\`" >&2
 	INTERACTIVE=false
 fi
 
