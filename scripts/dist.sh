@@ -30,8 +30,18 @@ sqlite3 "$ROOT/videos.db" "VACUUM;"
 echo "Install composer packages"
 composer install -d "$ROOT"
 
+# Overwrite protection
+COPY=true
+if [[ ! -z "`cat "$ROOT/env.php"`" ]]
+then
+	COPY=false
+fi
+if $COPY
+then
+	cp "$ROOT/env.example.php" "$ROOT/env.php"
+fi
+
 # Interactive edit
-cp "$ROOT/env.example.php" "$ROOT/env.php"
 INTERACTIVE=true
 pv -qL 165 >&2 <<EOF
 +---------------------------------------------+
