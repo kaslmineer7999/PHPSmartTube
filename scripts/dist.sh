@@ -19,8 +19,18 @@ rsync -avP --info=progress2 "$ROOT/src/" "$ROOT/dist/"
 DATABASE=true
 if [[ -s "$ROOT/videos.db" ]] || (sqlite3 "$ROOT/videos.db" "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';" | grep -q .)
 then
-	echo "Bypass database copying"
 	DATABASE=false
+	echo "The database already exists"
+	echo "Are you sure you want to wipe the database? [y/N]"
+	read -erp "> " choice
+	if [ "${choice^^}" = "Y" ]
+	then
+		echo "Wiping database"
+		DATABASE=true
+	else
+		echo "Bypass database copying"
+		DATABASE=false
+	fi
 fi
 
 # Database copying
@@ -46,6 +56,27 @@ COPY=true
 if [[ -s "$ROOT/env.php" ]]
 then
 	COPY=false
+	echo "The env file already exists"
+	echo "You may:"
+	echo "	1) Keep it and do not modify"
+	echo "	2) Keep it and modify"
+	echo "	3) Wipe and modify"
+	read -erp "> " choice
+	case "$choice" in
+		1)
+			COPY=false
+			INTERACTIVE=false
+		;;
+		2)
+			COPY=false
+			INTERACTIVE=true
+		;;
+		3)
+			COPY=false
+			INTERACTIVE=false
+		;;
+		*) echo 'Incorrect option';;
+	esac
 fi
 if $COPY
 then
@@ -53,7 +84,11 @@ then
 fi
 
 # Interactive edit
-INTERACTIVE=true
+if [ -z "$INTERACTIVE" ]
+then
+	INTERACTIVE=true
+fi
+
 pv -qL 165 >&2 <<EOF
 +---------------------------------------------+
 |                                             |
