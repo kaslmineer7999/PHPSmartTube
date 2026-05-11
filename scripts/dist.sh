@@ -72,8 +72,8 @@ then
 			INTERACTIVE=true
 		;;
 		3)
-			COPY=false
-			INTERACTIVE=false
+			COPY=true
+			INTERACTIVE=true
 		;;
 		*) echo 'Incorrect option';;
 	esac
