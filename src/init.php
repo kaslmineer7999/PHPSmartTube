@@ -5,6 +5,13 @@ require __DIR__ . '/helpers/session_id.php';
 
 $db = new SQLite3(__DIR__ . '/../' . 'videos.db');
 $env = require __DIR__ . '/../env.php';
+$bb = new \Nbbc\BBCode();
+$bb->AddRule('tt', [
+	'simple_start' => '<tt>',
+	'simple_end' => '</tt>',
+	'class' => 'inline',
+	'allow_in' => ['listitem', 'block', 'columns', 'inline', 'link']
+]);
 
 return [
 	'db' => $db,
@@ -17,7 +24,8 @@ return [
 			file_get_contents(__DIR__ . '/html/footer3.html')
 		]
 	],
-	'env' => $env
+	'env' => $env,
+	'bbparser' => $bb
 ];
 
 unset($db);

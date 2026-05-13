@@ -2,14 +2,14 @@
 	$app = require __DIR__ . '/init.php';
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$stmt = $app['db']->prepare('SELECT * FROM users WHERE username = :name');
-		$stmt->bindValue(':name', $_COOKIE['username'], SQLITE3_TEXT);
+		$stmt->bindValue(':name', $_COOKIE['username'] ?? '', SQLITE3_TEXT);
 		$result = $stmt->execute();
 		$row = $result->fetchArray(SQLITE3_ASSOC);
 
 		// Assume expired session_id, faker, or unregister until otherwise proven
 		$username = 'Guest';
 
-		if(hash_equals(create_session_id($_COOKIE['username'], $row['key'], $app['env']['TOPSECRET']), $_COOKIE['session_id'])) {
+		if(hash_equals(create_session_id($_COOKIE['username'], $row['key'], $app['env']['TOPSECRET']), $_COOKIE['session_id'] ?? '')) {
 			$username = $_COOKIE['username'];
 		}
 
@@ -43,9 +43,6 @@
 		$failmessage = '<font color="red"><b>Some error happened. Couldn\'t post entry</b></font><br>';
 		header('Set-cookie: guestbookfailure=; HttpOnly; Max-Age=0');
 	}
-
-	$bbparse = new \Nbbc\BBCode();
-	$bbparse->AddRule();
 
 ?>
 <?= $app['layout']['head'] ?>
@@ -90,7 +87,7 @@
 						<div style="float: left; width: 33.33%; transform: rotate(180deg)"><button>^</button></div>
 					</div>
 				</div>
-				<div class="gbcontent"><?= $bbparse->Parse($row['bodytext']) //lib escapes html on its own ?></div>
+				<div class="gbcontent"><?= $app['bbparser']->Parse($row['bodytext']) //lib escapes html on its own ?></div>
 			</div>
 			<?php
 		}
