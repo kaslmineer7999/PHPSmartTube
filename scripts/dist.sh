@@ -14,6 +14,7 @@ ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/.."
 # Copy code
 echo "Copying files."
 rsync -avP --info=progress2 "$ROOT/src/" "$ROOT/dist/"
+echo
 
 # Overwrite protection for database
 DATABASE=true
@@ -50,6 +51,7 @@ fi
 # Install from the composer.json
 echo "Install composer packages"
 composer install -d "$ROOT"
+echo
 
 # Overwrite protection
 COPY=true
