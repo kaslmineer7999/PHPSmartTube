@@ -12,6 +12,42 @@ $bb->AddRule('tt', [
 	'class' => 'inline',
 	'allow_in' => ['listitem', 'block', 'columns', 'inline', 'link']
 ]);
+$bb->AddRule('code', [
+	'simple_start' => '<tt>',
+	'simple_end' => '</tt>',
+	'class' => 'code',
+	'allow_in' => ['listitem', 'block', 'columns', 'inline', 'link']
+]);
+$bb->AddRule('codeblock', [
+	'simple_start' => '<pre>',
+	'simple_end' => '</pre>',
+	'class' => 'code',
+	'allow_in' => ['listitem', 'block', 'columns']
+]);
+$bb->AddRule('pre', [
+	'simple_start' => '<pre>',
+	'simple_end' => '</pre>',
+	'class' => 'code',
+	'allow_in' => ['listitem', 'block', 'columns']
+]);
+$bb->AddRule('keyboard', [
+	'simple_start' => '<kbd>',
+	'simple_end' => '</kbd>',
+	'class' => 'inline',
+	'allow_in' => ['listitem', 'block', 'columns', 'inline', 'link']
+]);
+$bb->AddRule('sample', [
+	'simple_start' => '<pre>',
+	'simple_end' => '</pre>',
+	'class' => 'inline',
+	'allow_in' => ['listitem', 'block', 'columns', 'inline', 'link']
+]);
+$bb->AddRule('pre', [
+	'simple_start' => '<pre>',
+	'simple_end' => '</pre>',
+	'class' => 'code',
+	'allow_in' => ['listitem', 'block', 'columns']
+]);
 
 return [
 	'db' => $db,
@@ -30,3 +66,4 @@ return [
 
 unset($db);
 unset($env);
+unset($bb);

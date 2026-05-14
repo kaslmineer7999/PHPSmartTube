@@ -70,3 +70,7 @@
 	image-rendering: pixelated; /* 1 */
 	image-rendering: crisp-edges; /* 1 */
 }
+
+.gbcontent pre br {
+	display: none;
+}
