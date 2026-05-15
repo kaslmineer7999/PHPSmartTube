@@ -16,5 +16,14 @@ return [
 	// 	This is used in session_id's. Keep this a constant (so no time() or smilar)
 	//	Make sure this is long and not easily guessable, replace the example input
 	//	Keep this a secret
-	'TOPSECRET' => 'EXAMPLE INPUT'
+	'TOPSECRET' => 'EXAMPLE INPUT',
+	// String:
+	// 	Directory used for video files. Keep this a constant
+	// 	Only required if using offline mode (ONLINEMODE is false), otherwise
+	// 	not used
+	'VIDEODIR' => $_SERVER['DOCUMENT_ROOT'] . /videos/',
+	// String:
+	//	Directory used for thumbnail image files. Keep this a constant
+	// 	Only required if using offline mode (ONLINEMODE is false), otherwise not used
+	'DIR' => $_SERVER['DOCUMENT_ROOT'] . /thumbs/'
 ];
