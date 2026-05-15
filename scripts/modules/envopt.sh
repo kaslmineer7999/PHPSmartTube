@@ -68,6 +68,6 @@ EOF
 if [ "$BASh_SOUCE" = "$0" ]
 then
 	# Find project root
-	ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/.."
+	ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/../.."
 	env_options
 fi
