@@ -5,8 +5,10 @@
 #	"deploy" script. Doesn't do much, you may amend this
 #
 
+# Find project root
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/.."
+
 # Imports
-source "$ROOT/scripts/modules/root.sh"
 source "$ROOT/scripts/modules/dbcopy.sh"
 source "$ROOT/scripts/modules/envopt.sh"
 source "$ROOT/scripts/modules/copy.sh"

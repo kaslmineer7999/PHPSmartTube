@@ -8,6 +8,7 @@ install_composer() {
 
 if [ "$BASH_SOURCE" = "$0" ]
 then
-	source root.sh
+	# Find project root
+	ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/.."
 	install_composer
 fi
