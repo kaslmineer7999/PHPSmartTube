@@ -21,9 +21,9 @@ return [
 	// 	Directory used for video files. Keep this a constant
 	// 	Only required if using offline mode (ONLINEMODE is false), otherwise
 	// 	not used
-	'VIDEODIR' => $_SERVER['DOCUMENT_ROOT'] . /videos/',
+	'VIDEODIR' => $_SERVER['DOCUMENT_ROOT'] . '/videos/',
 	// String:
 	//	Directory used for thumbnail image files. Keep this a constant
 	// 	Only required if using offline mode (ONLINEMODE is false), otherwise not used
-	'DIR' => $_SERVER['DOCUMENT_ROOT'] . /thumbs/'
+	'DIR' => $_SERVER['DOCUMENT_ROOT'] . '/thumbs/'
 ];

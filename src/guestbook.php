@@ -22,7 +22,10 @@
 		$stmt->bindValue(':time', time(), SQLITE3_INTEGER);
 		$stmt->bindValue(':textdata', $_POST['textdata'], SQLITE3_TEXT);
 		$stmt->bindValue(':username', $username, SQLITE3_TEXT);
-		if($stmt->execute()) {
+
+		$empty = $_POST['textdata'].strip() == '';
+
+		if((!$empty) &&$stmt->execute()) {
 			// we're done, we can go home
 			header('Location: /guestbook.php');
 			ob_flush();
@@ -54,7 +57,7 @@
 <form method="POST">
 	<fieldset style="text-align: center; margin-bottom: 20px">
 		<legend><big>E</big>ntry <big>B</big>ody <big>T</big>ext</legend>
-		<textarea name="textdata" style="width: 100%; height: 60ch; background: #444; color: #fff;"></textarea>
+		<textarea name="textdata" style="width: 100%; height: 60ch; background: #444; color: #fff;" required></textarea>
 	</fieldset>
 	<fieldset style="text-align: center; margin-bottom: 20px">
 		<legend><big>A</big>ctions</legend>
