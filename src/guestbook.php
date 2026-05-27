@@ -23,7 +23,7 @@
 		$stmt->bindValue(':textdata', $_POST['textdata'], SQLITE3_TEXT);
 		$stmt->bindValue(':username', $username, SQLITE3_TEXT);
 
-		$empty = $_POST['textdata'].strip() == '';
+		$empty = trim($_POST['textdata']) == '';
 
 		if((!$empty) &&$stmt->execute()) {
 			// we're done, we can go home
