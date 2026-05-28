@@ -25,5 +25,16 @@ return [
 	// String:
 	//	Directory used for thumbnail image files. Keep this a constant
 	// 	Only required if using offline mode (ONLINEMODE is false), otherwise not used
-	'DIR' => $_SERVER['DOCUMENT_ROOT'] . '/thumbs/'
+	'THUMBDIR' => $_SERVER['DOCUMENT_ROOT'] . '/thumbs/',
+	// String:
+	// 	Video encoder, I recomend making this a H264/AVC encoder. Keep this a constant
+	// 	Only used in offline mode, otherwise not used
+	'VIDEOENCODER' => 'libx264',
+	'VIDEOPROFILE' => 'high',
+	'VIDEOPRESET'  => 'ultrafast',
+	'VIDEOCRF'     => '23',
+	// String:
+	// 	Audio encoder stuff, I recomend not touching it
+	'AUDIOENODER'  => 'aac',
+	'AUDIOBITRATE' => '192k'
 ];
