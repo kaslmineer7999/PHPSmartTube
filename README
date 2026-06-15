@@ -17,3 +17,6 @@
 		./scripts/dist.sh
 
 		That's it, just run the above command and it will do everything
+
+	If you haven't recieved a copy of the AGPL v3.0 with this program,
+	you may find it at http://www.gnu.org/licenses/agpl-3.0.txt
